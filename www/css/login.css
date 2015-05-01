@@ -1,0 +1,19 @@
+/* Custom css */
+.login-logo {
+	background: url(../img/fut_logo.png) no-repeat scroll center top rgba(0, 0, 0, 0);
+	height: 200px; 
+	width: 100%; 
+}
+.loginPad {
+	padding: 5% 0 0;
+}
+
+.login-background {
+    background: url(../img/login.png);
+}
+
+.login-button {
+    background-color: #465771;
+    border-color: #5f69ee;
+    color: #fff;
+}
