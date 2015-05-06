@@ -3,9 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
-
-.run(function($ionicPlatform) {
+angular.module('starter', ['ionic']).run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -16,4 +14,35 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
   });
+})
+
+/**
+ * Login controller.
+ * */
+.controller('LoginController', function($http) {
+
+	/**
+	 * Login function.
+	 */
+	this.login = function login() {
+		    this.authMsg = '';
+		    this.m_username = 'holo';
+		    this.m_password = 'holo';
+
+		    
+
+		      $http.post('api/account/login', {email: this.m_username, password: this.m_password})
+		        .then(function(response) {
+		          // assumes if ok, response is an object with some data, if not, a string with error
+		          // customize according to your api
+		          if (!response.account) {
+		            this.authMsg = 'Incorrect credentials.';
+		          }else{
+		            $state.go('app.dashboard');
+		          }
+		        }, function(x) {
+		          this.authMsg = 'Server Request Error';
+		        });
+		   
+	};
 })
