@@ -16,17 +16,24 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    
     <!-- angularjs min js -->
     <script src="lib/ionic/js/angular/angular-resource.min.js"></script>
+    
+    <!-- angularjs min js -->
+    <!-- <script src="lib/ionic/js/angular/angular.min.js"></script> -->
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- REST access config js -->    
-    <script src="js/services.js"></script>
+    <!-- <script src="js/services.js"></script>  -->
+    
+    
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
+    
   </head>
   <body ng-app="starter">
 
@@ -35,18 +42,23 @@
 		    <div class="login-logo">
 		      
 		    </div>
-            <label class="item item-input">
-                <span class="input-label">Username</span>
-                <input type="text" ng-model="m_username" ng-minlength="6" ng-maxlength="15">
-            </label>
-            <br>
-            <label class="item item-input">
-                <span class="input-label">Password</span>
-                <input type="password" ng-model="m_password" ng-minlength="3" ng-maxlength="10">
-            </label>
-            <div class="padding">
-                <button class="login-button button button-block">Sign In</button>
-			</div>
+            <form role="form" ng-submit="login()" name="loginForm" novalidate="">
+			    <div ng-controller="LoginController as login">
+		            <label class="item item-input">
+		                <span class="input-label">Username</span>
+		                <input type="text" name="account_email" ng-model="login.m_username" ng-minlength="6" ng-maxlength="15" required>
+		            </label>
+		            <br>
+		            <label class="item item-input">
+		                <span class="input-label">Password</span>
+		                <input type="password" name="account_password" ng-model="login.m_password" ng-minlength="3" ng-maxlength="10" required>
+		            </label>
+		            <div class="padding">
+		                <button class="login-button button button-block btn" ng-click="login.login()">Sign In</button>
+					</div>
+				</div>
+			</form>
+			<div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
 		</ion-content>
     </ion-pane>
   </body>
