@@ -25,29 +25,31 @@ angular.module('starter', ['ionic']).run(function($ionicPlatform) {
 	 * Login function.
 	 */
 	this.login = function login() {
-			$scope.login.authMsg = '';
-			$scope.login.m_username = 'admin';
-			$scope.login.m_password = 'admin';
+		$scope.login.authMsg = '';
+		$scope.login.m_username = 'admin';
+		$scope.login.m_password = 'admin';
 
 		var request = $http({
 			method: "POST",
-			url: "http://soa-futclubmanager.herokuapp.com/api/oauth/token",
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-			transformRequest: transformRequestAsFormPost,
-			data: {
-				grant_type:'password',
-				client_id:'android',
-				client_secret:'SomeRandomCharsAndNumbers',
-				username:'admin',
-				password:'admin'
+			url:"http://soa-futclubmanager.herokuapp.com/api/oauth/token",
+			headers: {
+				//'Authorization': 'Basic d2ViYXBwOnMzY3IzdA==',
+			    'Content-Type': 'application/x-www-form-urlencoded'},
+			    transformRequest: transformRequestAsFormPost,
+			    data: {
+			          grant_type:'password', 
+			          client_id:'android',
+			          client_secret:'SomeRandomCharsAndNumbers',
+			          username:'admin',
+			          password:'admin'
+			    }
 			}
-		}).success(function (err, data) {
-			$scope.login.m_username = 'ehh';
-
+		).success(function (err, data) {
+			$scope.login.authMsg = 'ehh';
 			console.log("deal with it bitch");
 
 		}).error(function (err, data) {
-			$scope.login.m_username = ':  (';
+			$scope.login.authMsg = err + ' ' + data;
 			console.log("error you bitch");
 		});
 	};
