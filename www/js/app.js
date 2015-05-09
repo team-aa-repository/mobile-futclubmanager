@@ -16,69 +16,30 @@ var app = angular.module('starter', ['ionic']).run(function($ionicPlatform) {
   });
 });
 
-
 /**
  * transform request factory.
  */
-app.factory("transformRequestAsFormPost", function() {
 
-		// I prepare the request data for the form post.
-		function transformRequest( data, getHeaders ) {
-
-			var headers = getHeaders();
-
-			// headers[ "Content-Type" ] = "application/x-www-form-urlencoded";
-
-			return( serializeData( data ) );
-
-		}
-
-
-		// Return the factory value.
-		return( transformRequest );
-
-		function serializeData( data ) {
-
-			// If this is not an object, defer to native stringification.
-			if ( ! angular.isObject( data ) ) {
-
-				return( ( data == null ) ? "" : data.toString() );
-
-			}
-
-			var buffer = [];
-
-			// Serialize each key in the object.
-			for ( var name in data ) {
-
-				if ( ! data.hasOwnProperty( name ) ) {
-
-					continue;
-
-				}
-
-				var value = data[ name ];
-
-				buffer.push(
-					encodeURIComponent( name ) +
-					"=" +
-					encodeURIComponent( ( value == null ) ? "" : value )
-				);
-
-			}
-
-			// Serialize the buffer and clean it up for transportation.
-			var source = buffer
-					.join( "&" )
-					.replace( /%20/g, "+" )
-				;
-
-			return( source );
-
-		}
-
+var transformData = function(data) {
+	if ( ! angular.isObject( data ) ) {
+		return( ( data == null ) ? "" : data.toString() );
 	}
-);
+	var buffer = [];
+	// Serialize each key in the object.
+	for ( var name in data ) {
+		if ( ! data.hasOwnProperty( name ) ) {
+			continue;
+		}
+		var value = data[ name ];
+		buffer.push(encodeURIComponent( name ) + "=" + encodeURIComponent( ( value == null ) ? "" : value )
+		);
+	}
+	// Serialize the buffer and clean it up for transportation.
+	return source = 
+		buffer
+		.join( "&" )
+		.replace( /%20/g, "+" );
+};
 	
 /**
  * Login controller.
@@ -98,7 +59,7 @@ app.controller('LoginController', function($http) {
 			url: "http://soa-futclubmanager.herokuapp.com/api/oauth/token",
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'},
-			transformRequest: transformRequestAsFormPost,
+			transformRequest: transformData,
 			data: {
 				grant_type:'password',
 				client_id:'android',
@@ -107,11 +68,12 @@ app.controller('LoginController', function($http) {
 				password:'admin'
 			}
 		}).success(function (err, data) {
-
-			console.log("deal with it bitch");
+			$scope.login.authMsg = 'ehh';
+			console.log(data);
 
 		}).error(function (err, data) {
-			console.log("error you bitch");
+			$scope.login.authMsg = err;
+			console.log("soa error");
 		});
 	};
 });
