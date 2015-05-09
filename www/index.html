@@ -56,9 +56,10 @@
 		            <div class="padding">
 		                <button class="login-button button button-block btn" ng-click="login.login()">Sign In</button>
 					</div>
+					<div class="alert alert-danger text-center" ng-model="login.authMsg">{{login.authMsg}}</div>
 				</div>
 			</form>
-			<div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
+			
 		</ion-content>
     </ion-pane>
   </body>
