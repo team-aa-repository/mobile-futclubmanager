@@ -67,11 +67,14 @@ app.controller('LoginController', function($http, $scope) {
 				username:'admin',
 				password:'admin'
 			}
-		}).success(function (err, data) {
-			$scope.login.authMsg = 'success';
+		})
+		.success(function(data, status, headers, config) {
+			$scope.login.authMsg = 'Login Successful.';
+			console.log("["+data.access_token+"]");
+		})
+		.error(function(data, status, headers, config) {
+			$scope.login.authMsg = 'Login Error.';
 			console.log(data);
-		}).error(function (err, data) {
-			$scope.login.authMsg = 'error';
 		});
 	};
 });
