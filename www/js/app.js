@@ -44,7 +44,7 @@ var transformData = function(data) {
 /**
  * Login controller.
  * */
-app.controller('LoginController', function($http) {
+app.controller('LoginController', function($http, $scope) {
 
 	/**
 	 * Login function.
@@ -68,12 +68,10 @@ app.controller('LoginController', function($http) {
 				password:'admin'
 			}
 		}).success(function (err, data) {
-			$scope.login.authMsg = 'ehh';
+			$scope.login.authMsg = 'success';
 			console.log(data);
-
 		}).error(function (err, data) {
-			$scope.login.authMsg = err;
-			console.log("soa error");
+			$scope.login.authMsg = 'error';
 		});
 	};
 });
