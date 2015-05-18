@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic']).run(function($ionicPlatform) {
+var app = angular.module('starter', ['ionic', 'footManager-constants']).run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -44,19 +44,16 @@ var transformData = function(data) {
 /**
  * Login controller.
  * */
-app.controller('LoginController', function($http, $scope) {
+app.controller('LoginController', function($http, $scope, apiUrl) {
 
 	/**
 	 * Login function.
 	 */
 	this.login = function login() {
-		    this.authMsg = '';
-		    this.m_username = 'admin';
-		    this.m_password = 'admin';
 
 		var request = $http({
 			method: "POST",
-			url: "http://soa-futclubmanager.herokuapp.com/api/oauth/token",
+			url: apiUrl,
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'},
 			transformRequest: transformData,
@@ -64,8 +61,8 @@ app.controller('LoginController', function($http, $scope) {
 				grant_type:'password',
 				client_id:'android',
 				client_secret:'SomeRandomCharsAndNumbers',
-				username:'admin',
-				password:'admin'
+				password:$scope.login.m_password,
+				username:$scope.login.m_username
 			}
 		})
 		.success(function(data, status, headers, config) {

@@ -30,10 +30,8 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <!-- REST access config js -->    
-    <!-- <script src="js/services.js"></script>  -->
-    
-    
+    <!-- Constants js -->    
+    <script src="js/constants/footManager-constants.js"></script>
 
     
   </head>
@@ -48,12 +46,12 @@
 			    <div ng-controller="LoginController as login">
 		            <label class="item item-input">
 		                <span class="input-label">Username</span>
-		                <input type="text" name="account_email" ng-model="login.m_username" ng-minlength="6" ng-maxlength="15" required>
+		                <input type="text" name="account_email" ng-model="login.m_username" required>
 		            </label>
 		            <br>
 		            <label class="item item-input">
 		                <span class="input-label">Password</span>
-		                <input type="password" name="account_password" ng-model="login.m_password" ng-minlength="3" ng-maxlength="10" required>
+		                <input type="password" name="account_password" ng-model="login.m_password" required>
 		            </label>
 		            <div class="padding">
 		                <button class="login-button button button-block btn" ng-click="login.login()">Sign In</button>

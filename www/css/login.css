@@ -1,6 +1,6 @@
 /* Custom css */
 .login-logo {
-	/*background: url(../img/fut_logo.png) no-repeat scroll center top rgba(0, 0, 0, 0);*/
+	background: url(../img/fut_logo.png) no-repeat scroll center top rgba(0, 0, 0, 0);
 	height: 200px; 
 	width: 100%; 
 }
@@ -9,7 +9,7 @@
 }
 
 .login-background {
-    /*background: url(../img/login.png);*/
+    background: url(../img/login.png);
 }
 
 .login-button {
