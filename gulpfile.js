@@ -1,3 +1,5 @@
+//To run gulp, run below command
+//gulp replace --env production
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var replace = require('gulp-replace-task');
